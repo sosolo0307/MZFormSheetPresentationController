@@ -228,6 +228,9 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
 }
 
 - (CGFloat)yCoordinateBelowStatusBar {
+    if(_isIgnoreStatusBarHeight) {
+        return 0;
+    }
 #if TARGET_OS_TV || MZ_APP_EXTENSIONS
     return 0;
 #else
@@ -518,6 +521,13 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
             screenRect = self.containerView.bounds;
         }
         if(CGRectGetWidth(screenRect) < CGRectGetWidth(formSheetRect)) {
+            CGFloat horizontalMargin;
+            if (self.horizontalMarginConfigurationHandler) {
+                horizontalMargin = self.horizontalMarginConfigurationHandler(self.presentedView);
+            }else {
+                horizontalMargin = 0;
+            }
+
             formSheetRect.size.width = CGRectGetWidth(screenRect)-30; //TODO : 변수
         }
     }
@@ -533,7 +543,13 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
             screenRect = self.containerView.bounds;
         }
         if(CGRectGetHeight(screenRect) < CGRectGetHeight(formSheetRect)) {
-            formSheetRect.size.height = CGRectGetHeight(screenRect)-30; //TODO : 변수
+            CGFloat verticalMargin;
+            if (self.verticalMarginConfigurationHandler) {
+                verticalMargin = self.verticalMarginConfigurationHandler(self.presentedView);
+            }else {
+                verticalMargin = 0;
+            }
+            formSheetRect.size.height = CGRectGetHeight(screenRect) - verticalMargin; //TODO : 변수
         }
     }
 

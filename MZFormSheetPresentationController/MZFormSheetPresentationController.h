@@ -31,6 +31,8 @@ typedef void(^MZFormSheetPresentationControllerTransitionBeginCompletionHandler)
 typedef void(^MZFormSheetPresentationControllerTransitionEndCompletionHandler)(UIViewController * __nonnull presentingViewController, BOOL completed);
 typedef void(^MZFormSheetPresentationControllerTapHandler)(CGPoint location);
 typedef CGRect(^MZFormSheetPresentationFrameConfigurationHandler)(UIView * __nonnull presentedView, CGRect currentFrame, BOOL isKeyboardVisible);
+typedef CGFloat(^MZFormSheetPresentationVerticalMarginConfigurationHandler)(UIView * __nonnull presentedView);
+typedef CGFloat(^MZFormSheetPresentationHorizontalMarginConfigurationHandler)(UIView * __nonnull presentedView);
 
 typedef NS_ENUM(NSInteger, MZFormSheetActionWhenKeyboardAppears) {
     MZFormSheetActionWhenKeyboardAppearsDoNothing = 0,
@@ -57,6 +59,13 @@ typedef NS_ENUM(NSInteger, MZFormSheetActionWhenKeyboardAppears) {
  *  The preferred size for the container’s content. (required)
  */
 @property (nonatomic, assign) CGSize contentViewSize MZ_APPEARANCE_SELECTOR;
+
+
+/**
+ Distance that the presented form sheet view is inset from the status bar in landscape orientation.
+ By default, this is 6.0
+ */
+@property (nonatomic, assign) BOOL isIgnoreStatusBarHeight MZ_APPEARANCE_SELECTOR;
 
 /**
  Distance that the presented form sheet view is inset from the status bar in landscape orientation.
@@ -181,6 +190,18 @@ typedef NS_ENUM(NSInteger, MZFormSheetActionWhenKeyboardAppears) {
  *  for presentedView
  */
 @property (nonatomic, copy, nullable) MZFormSheetPresentationFrameConfigurationHandler frameConfigurationHandler;
+
+/**
+ *  TODO
+ *  for presentedView
+ */
+@property (nonatomic, copy, nullable) MZFormSheetPresentationVerticalMarginConfigurationHandler verticalMarginConfigurationHandler;
+
+/**
+ *  TODO
+ *  for presentedView
+ */
+@property (nonatomic, copy, nullable) MZFormSheetPresentationHorizontalMarginConfigurationHandler horizontalMarginConfigurationHandler;
 
 /**
  *  This method recalculate presenting view frame
