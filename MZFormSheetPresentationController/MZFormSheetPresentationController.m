@@ -510,11 +510,33 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
     } else {
         formSheetRect.size = contentViewSize;
     }
-    
+    if (self.shouldCenterSizeToFitWidth) {
+        CGRect screenRect;
+        if(self.keyboardVisible) {
+            screenRect = [self.screenFrameWhenKeyboardVisible CGRectValue];
+        }else {
+            screenRect = self.containerView.bounds;
+        }
+        if(CGRectGetWidth(screenRect) < CGRectGetWidth(formSheetRect)) {
+            formSheetRect.size.width = CGRectGetWidth(screenRect)-30; //TODO : 변수
+        }
+    }
+
     if (self.shouldCenterHorizontally) {
         formSheetRect.origin.x = CGRectGetMidX(self.containerView.bounds) - formSheetRect.size.width/2;
     }
-    
+    if (self.shouldCenterSizeToFitHeight) {
+        CGRect screenRect;
+        if(self.keyboardVisible) {
+            screenRect = [self.screenFrameWhenKeyboardVisible CGRectValue];
+        }else {
+            screenRect = self.containerView.bounds;
+        }
+        if(CGRectGetHeight(screenRect) < CGRectGetHeight(formSheetRect)) {
+            formSheetRect.size.height = CGRectGetHeight(screenRect)-30; //TODO : 변수
+        }
+    }
+
     if (self.keyboardVisible && self.movementActionWhenKeyboardAppears != MZFormSheetActionWhenKeyboardAppearsDoNothing) {
         CGRect screenRect = [self.screenFrameWhenKeyboardVisible CGRectValue];
         

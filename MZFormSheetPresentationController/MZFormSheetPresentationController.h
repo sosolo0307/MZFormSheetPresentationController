@@ -95,6 +95,17 @@ typedef NS_ENUM(NSInteger, MZFormSheetActionWhenKeyboardAppears) {
 @property (nonatomic, assign) BOOL shouldCenterVertically MZ_APPEARANCE_SELECTOR;
 
 /**
+ Center form sheet size to fit at screenView size (height).
+ By default, this is NO
+ */
+@property (nonatomic, assign) BOOL shouldCenterSizeToFitHeight MZ_APPEARANCE_SELECTOR;
+
+/**
+ Center form sheet size to fit at screenView size (width).
+ By default, this is NO
+ */
+@property (nonatomic, assign) BOOL shouldCenterSizeToFitWidth MZ_APPEARANCE_SELECTOR;
+/**
  *  Returns whether the keyboard is visible
  */
 @property (nonatomic, assign, readonly, getter=isKeyboardVisible) BOOL keyboardVisible;
