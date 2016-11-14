@@ -528,7 +528,7 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
                 horizontalMargin = 0;
             }
 
-            formSheetRect.size.width = CGRectGetWidth(screenRect)-30; //TODO : 변수
+            formSheetRect.size.width = CGRectGetWidth(screenRect) - horizontalMargin; //TODO : 변수
         }
     }
 
