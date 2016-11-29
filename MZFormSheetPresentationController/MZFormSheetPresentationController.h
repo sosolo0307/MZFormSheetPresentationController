@@ -31,8 +31,8 @@ typedef void(^MZFormSheetPresentationControllerTransitionBeginCompletionHandler)
 typedef void(^MZFormSheetPresentationControllerTransitionEndCompletionHandler)(UIViewController * __nonnull presentingViewController, BOOL completed);
 typedef void(^MZFormSheetPresentationControllerTapHandler)(CGPoint location);
 typedef CGRect(^MZFormSheetPresentationFrameConfigurationHandler)(UIView * __nonnull presentedView, CGRect currentFrame, BOOL isKeyboardVisible);
-typedef CGFloat(^MZFormSheetPresentationVerticalMarginConfigurationHandler)(UIView * __nonnull presentedView);
-typedef CGFloat(^MZFormSheetPresentationHorizontalMarginConfigurationHandler)(UIView * __nonnull presentedView);
+typedef double(^MZFormSheetPresentationVerticalMarginConfigurationHandler)(UIView * __nonnull presentedView);
+typedef double(^MZFormSheetPresentationHorizontalMarginConfigurationHandler)(UIView * __nonnull presentedView);
 
 typedef NS_ENUM(NSInteger, MZFormSheetActionWhenKeyboardAppears) {
     MZFormSheetActionWhenKeyboardAppearsDoNothing = 0,
