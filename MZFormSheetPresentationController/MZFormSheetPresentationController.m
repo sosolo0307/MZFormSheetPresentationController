@@ -460,6 +460,13 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
 - (void)willShowKeyboardNotification:(NSNotification *)notification __TVOS_PROHIBITED {
     CGRect keyboardRect = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect screenRect = [UIScreen mainScreen].bounds;
+    
+    if(CGRectGetHeight(keyboardRect) == 0) {
+        self.keyboardVisible = NO;
+        self.screenFrameWhenKeyboardVisible = [NSValue valueWithCGRect:screenRect];
+        return;
+    }
+    
     CGRect visibleKeyboardRect;
     visibleKeyboardRect = [self visibleKeyboardRect:keyboardRect windowRect:screenRect];
     screenRect.size.height = [UIScreen mainScreen].bounds.size.height - CGRectGetHeight(visibleKeyboardRect);
